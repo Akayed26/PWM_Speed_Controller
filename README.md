@@ -6,7 +6,7 @@ A high-reliability, discrete-component PWM motor speed controller built around t
 
 ## 📷 Schematic
 
-![PWM Motor Controller Schematic](schematic.jpg)
+![PWM Motor Controller Schematic]("C:\Users\AKAYED\Downloads\PWM SPEED CONTROLLER\Screenshot 2026-06-01 164635.png")
 
 ---
 
@@ -66,50 +66,6 @@ A high-reliability, discrete-component PWM motor speed controller built around t
 | R3 | Resistor | 1kΩ | Series gate resistor |
 | R4 | Resistor | 10kΩ | Gate-to-source pull-down |
 | — | BLDC Fan | 12V | Active MOSFET cooling |
-
----
-
-## 🏗️ Circuit Architecture
-
-### Dual Power Rail Design
-
-```
-20V DC Input
-    │
-    ├──► Motor Rail (20V) ──► L1 filter ──► Motor + MOSFET switch
-    │         │
-    │      C1, C2, C3 bulk + HF filtering
-    │
-    └──► LM7812CT ──► 12V Logic Rail ──► 555 Timer PWM circuit
-              │
-         C7, C8, C9, C10 multi-stage filtering
-```
-
-The motor and logic rails are completely separated. The LM7812CT provides ~60dB Power Supply Rejection Ratio (PSRR), attenuating motor switching noise by 1000× before it reaches the 555 timer.
-
-### PWM Generation (555 Astable)
-
-```
-12V ──► R2 ──┬──► D5 ──► R1 (pot) ──► D6 ──┬──► C9 ──► GND
-             │                               │
-           Pin 7 (DIS)                   Pin 2/6 (TRI/THR)
-```
-
-D5 and D6 route charge and discharge through opposite ends of the potentiometer, allowing duty cycle adjustment without affecting frequency — a classic variable PWM technique.
-
-### Gate Drive
-
-```
-555 Pin 3 (push-pull) ──► R3 (1kΩ) ──► IRFZ44N Gate
-                                              │
-                                         R4 (10kΩ)
-                                              │
-                                             GND
-```
-
-- **R3** damps gate ringing and limits inrush current
-- **R4** ensures gate is pulled firmly to ground when 555 output is low
-- 555 push-pull output actively drives gate both high and low
 
 ---
 
