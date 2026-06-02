@@ -6,7 +6,7 @@ A high-reliability, discrete-component PWM motor speed controller built around t
 
 ## 📷 Schematic
 
-![PWM Motor Controller Schematic]("C:\Users\AKAYED\Downloads\PWM SPEED CONTROLLER\Screenshot 2026-06-01 164635.png")
+<img width="1463" height="1012" alt="Screenshot 2026-06-01 164635" src="https://github.com/user-attachments/assets/f36f9704-b333-471c-aeee-51802dc5461b" />
 
 ---
 
